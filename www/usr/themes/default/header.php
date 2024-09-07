@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="<?php $this->options->themeUrl('normalize.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>">
-    <link rel="shortcut icon" href="/var/www/html/favicon.ico" type="image/x-icon" />
 
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>

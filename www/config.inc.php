@@ -27,7 +27,7 @@ $db->addServer(array (
   'charset' => 'utf8mb4',
   'database' => 'typecho',
   'engine' => 'InnoDB',
-  'sslCa' => NULL,
+  'sslCa' => '',
   'sslVerify' => false,
 ), \Typecho\Db::READ | \Typecho\Db::WRITE);
 \Typecho\Db::set($db);

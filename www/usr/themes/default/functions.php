@@ -3,8 +3,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 function themeConfig($form)
 {
-    $bei = new Typecho_Widget_Helper_Form_Element_Text('bei', NULL, NULL, _t('工信部备案号'), _t('留空则不显示'));
-    $form->addInput($bei->addRule('xssCheck', _t('工信部备案号不能使用特殊字符')));
     $logoUrl = new \Typecho\Widget\Helper\Form\Element\Text(
         'logoUrl',
         null,
@@ -13,7 +11,7 @@ function themeConfig($form)
         _t('在这里填入一个图片 URL 地址, 以在网站标题前加上一个 LOGO')
     );
 
-    $form->addInput($logoUrl->addRule('url', _t('请填写一个合法的URL地址')));
+    $form->addInput($logoUrl);
 
     $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
         'sidebarBlock',
@@ -29,39 +27,6 @@ function themeConfig($form)
     );
 
     $form->addInput($sidebarBlock->multiMode());
-}
-
-function postMeta(
-    \Widget\Archive $archive,
-    string $metaType = 'archive'
-)
-{
-    $titleTag = $metaType == 'archive' ? 'h2' : 'h1';
-?>
-    <<?php echo $titleTag ?> class="post-title" itemprop="name headline">
-        <a itemprop="url"
-           href="<?php $archive->permalink() ?>"><?php $archive->title() ?></a>
-    </<?php echo $titleTag ?>>
-    <?php if ($metaType != 'page'): ?>
-        <ul class="post-meta">
-            <li itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <?php _e('作者'); ?>: <a itemprop="name"
-                                       href="<?php $archive->author->permalink(); ?>"
-                                       rel="author"><?php $archive->author(); ?></a>
-            </li>
-            <li><?php _e('时间'); ?>:
-                <time datetime="<?php $archive->date('c'); ?>" itemprop="datePublished"><?php $archive->date(); ?></time>
-            </li>
-            <li><?php _e('分类'); ?>: <?php $archive->category(','); ?></li>
-            <?php if ($metaType == 'archive'): ?>
-                <li itemprop="interactionCount">
-                    <a itemprop="discussionUrl"
-                       href="<?php $archive->permalink() ?>#comments"><?php $archive->commentsNum('评论', '1 条评论', '%d 条评论'); ?></a>
-                </li>
-            <?php endif; ?>
-        </ul>
-    <?php endif; ?>
-<?php
 }
 
 /*
