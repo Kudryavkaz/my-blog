@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.22.1-alpine
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: always
+    volumes:
+      - ./www:/var/www/html
+      - ./nginx/cert:/etc/nginx/cert
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d
+    depends_on:
+      - php
+    networks:
+      - typecho
+
+  php:
+    container_name: php
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./www:/var/www/html
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - mysql
+    networks:
+      - typecho
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.31
+    restart: always
+    env_file:
+      - mysql.env
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/logs:/var/log/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+    networks:
+      - typecho
+
+networks:
+  typecho:
+    driver: bridge
