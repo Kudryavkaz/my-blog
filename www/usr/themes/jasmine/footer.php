@@ -10,12 +10,10 @@
                 <?php echo getCopyrightDate(); ?> <?php $this->options->title(); ?>. All Rights Reserved.
             </span>
         </div>
-            <span>
-                <br><a href="https://beian.miit.gov.cn/">粤ICP备2023159395号-1</a>
-            </span>
+            <span>Theme <a href="https://github.com/liaocp666/Jasmine" title="Jasmine" target="_blank">Jasmine</a> by <a href="https://www.liaocp.cn/" title="Kent Liao" target="_blank">Kent Liao</a></span>
+            <span><a href="https://beian.miit.gov.cn/">粤ICP备2023159395号-1</a></span>
     </div>
 </div>
-<div class="blog-text-center"><a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow"><?php $this->options->bei(); ?></a></div>
 <?php $this->footer(); ?>
 <script>
     <?php $this->options->customScript(); ?>
