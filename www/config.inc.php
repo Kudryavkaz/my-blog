@@ -20,7 +20,7 @@ require_once __TYPECHO_ROOT_DIR__ . '/var/Typecho/Common.php';
 // config db
 $db = new \Typecho\Db('Pdo_Mysql', 'typecho_');
 $db->addServer(array (
-  'host' => 'mysql',
+  'host' => 'blog-mysql',
   'port' => 3306,
   'user' => 'root',
   'password' => 'root_typecho',

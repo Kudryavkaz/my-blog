@@ -28,12 +28,12 @@ services:
     environment:
       - TZ=Asia/Shanghai
     depends_on:
-      - mysql
+      - blog-mysql
     networks:
       - typecho
 
-  mysql:
-    container_name: mysql
+  blog-mysql:
+    container_name: blog-mysql
     image: mysql:8.0.31
     restart: always
     env_file:
